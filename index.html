@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Silvanio Gois</title>
+    <style>
+        /* Variáveis de Cores */
+        :root {
+            --primary-color: #1a4371; /* Azul Escuro */
+            --accent-color: #ffcc00; /* Amarelo/Dourado (para destaque) */
+            --text-color: #333;
+            --light-bg: #f7f7f7;
+            --white: #ffffff;
+        }
+
+        /* Estilos Globais para Tela */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* -------------------------------------- */
+        /* ESTILOS ESPECÍFICOS PARA O OVERLAY */
+        /* -------------------------------------- */
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(247, 247, 247, 0.95);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #password-box {
+            padding: 30px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        #password-input {
+            padding: 12px;
+            margin: 15px 0 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 80%;
+            box-sizing: border-box;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        #acessar-button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        #acessar-button:hover {
+            background-color: #123152;
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1DA851;
+        }
+
+        /* Oculta o container do CV até a senha ser verificada */
+        #cv-content {
+            display: none;
+            width: 100%;
+        }
+
+        /* -------------------------------------- */
+        /* SEUS ESTILOS ORIGINAIS CONTINUAM AQUI */
+        /* -------------------------------------- */
+        .left-column {
+            width: 70%;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .left-column h3 {
+            font-size: 1.4em;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Estilo do Cabeçalho e Foto */
+        .header-content {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-text {
+            flex-grow: 1;
+        }
+
+        .profile-text h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .profile-text .subtitle {
+            color: var(--accent-color);
+            font-size: 1.1em;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-left: 30px;
+        }
+
+        /* Estilo para Experiência */
+        .experience-item {
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .experience-item h4 {
+            margin: 0 0 3px 0;
+            font-size: 1.1em;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .experience-item .details {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0 0 5px 0;
+        }
+
+        .experience-item ul {
+            padding-left: 20px;
+            margin: 5px 0 0 0;
+            font-size: 0.9em;
+            list-style: disc;
+        }
+
+        .experience-item p {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        /* Estilo para Qualificações */
+        .qualifications-summary p {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .qualifications-list {
+            list-style: disc;
+            padding-left: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px 15px;
+            font-size: 0.9em;
+        }
+
+        .qualifications-list li {
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 3px;
+            list-style-type: disc;
+        }
+
+        /* Coluna Lateral - Direita (30%) */
+        .right-column {
+            width: 30%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+
+        .right-column h3 {
+            font-size: 1.2em;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .contact-info p,
+        .list-style-none li {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .list-style-none {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list-style-none li strong {
+            display: block;
+        }
+
+        .list-style-none a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .list-style-none a:hover {
+            text-decoration: underline;
+        }
+
+        .bio-section p {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo para o QR Code e título "Autoentrevista" */
+        .qr-code-image {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .qr-code-image img {
+            width: 100px;
+            height: 100px;
+            border: 5px solid var(--accent-color);
+        }
+
+        .qr-code-image h4 {
+            color: var(--white);
+            margin-top: 10px;
+            font-size: 1em;
+        }
+
+        /* Mídia Queries para Responsividade */
+        @media (max-width: 768px) {
+            .cv-container {
+                flex-direction: column;
+            }
+
+            .left-column,
+            .right-column {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-photo {
+                margin: 15px 0 0 0;
+            }
+
+            .qualifications-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ------------------------------------------- */
+        /* ESTILOS ESPECÍFICOS PARA IMPRESSÃO (PDF)    */
+        /* ------------------------------------------- */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                /* Define a fonte padrão para impressão */
+                font-size: 10pt;
+            }
+
+            #password-overlay {
+                display: none !important; /* Garante que o overlay não apareça na impressão */
+            }
+
+            .cv-container {
+                max-width: 100%;
+                /* Remove sombra e borda na impressão */
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            /* Reduz margens de todas as colunas */
+            .left-column,
+            .right-column {
+                padding: 15px 10px;
+            }
+
+            /* Ajuste fino dos tamanhos de fonte e espaçamentos */
+            h1 {
+                font-size: 1.8em !important;
+            }
+
+            .subtitle {
+                font-size: 0.9em !important;
+            }
+
+            .left-column h3 {
+                font-size: 1.1em !important;
+                margin-top: 15px;
+                margin-bottom: 8px;
+                padding-bottom: 2px;
+                /* Força a cor preta ou mantém a cor (depende da impressora) */
+                color: #000 !important;
+                border-bottom-width: 1px;
+            }
+
+            .experience-item {
+                margin-bottom: 10px;
+            }
+
+            .experience-item h4 {
+                font-size: 1em !important;
+            }
+
+            .experience-item .details,
+            .experience-item p,
+            .experience-item ul,
+            .qualifications-summary p {
+                font-size: 0.8em !important;
+                line-height: 1.3;
+                margin: 2px 0;
+            }
+
+            .experience-item ul {
+                margin: 2px 0 0 0;
+            }
+
+            .qualifications-list {
+                font-size: 0.8em !important;
+                gap: 2px 8px;
+            }
+
+            /* Reduz o tamanho da foto */
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+                margin-left: 15px;
+            }
+
+            /* Coluna da Direita */
+            .right-column {
+                padding: 15px 10px;
+                /* Garante que o fundo e o texto da coluna direita sejam impressos */
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+                background-color: var(--primary-color) !important;
+                color: var(--white) !important;
+            }
+
+            .right-column h3 {
+                font-size: 1em !important;
+                margin-top: 10px;
+                margin-bottom: 8px;
+                padding-bottom: 2px;
+            }
+
+            .list-style-none li,
+            .bio-section p {
+                font-size: 0.8em !important;
+                line-height: 1.3;
+                margin: 3px 0;
+            }
+
+            /* Reduz a seção do QR Code */
+            .qr-code-image {
+                margin-top: 10px;
+                padding-top: 5px;
+            }
+
+            .qr-code-image img {
+                width: 70px;
+                height: 70px;
+                border-width: 3px;
+            }
+
+            .qr-code-image h4 {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="password-overlay">
+        <div id="password-box">
+            <h2 style="color: var(--primary-color); margin-bottom: 15px;">Acesso Restrito</h2>
+            <p style="color: var(--text-color); font-size: 1em;">
+                Para acessar o conteúdo completo, por favor, solicite a senha ou digite a chave que já foi fornecida.
+            </p>
+
+            <input type="password" id="password-input" placeholder="Senha de Acesso" onkeyup="if(event.key === 'Enter') checkPassword()">
+            <button id="acessar-button" onclick="checkPassword()">Acessar Currículo</button>
+
+            <p id="error-message" style="color: red; margin-top: 15px; font-size: 0.9em; display: none;">Senha incorreta. Tente novamente.</p>
+
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 25px 0;">
+
+            <p style="color: var(--text-color); font-size: 0.9em;">
+                Solicite a senha através do WhatsApp:
+            </p>
+            <a href="https://wa.me/5513988301094?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20a%20senha%20para%20acessar%20o%20curr%C3%ADculo%20de%20Silvanio%20Gois." target="_blank" class="whatsapp-button">
+                &#x2705; Solicitar Senha por WhatsApp
+            </a>
+
+            <p style="font-size: 0.75em; color: #666; margin-top: 25px;">
+                Esta restrição de acesso é uma <strong>medida de segurança</strong> para proteger meus dados pessoais, em conformidade com as boas práticas de <strong>LGPD</strong>.
+            </p>
+        </div>
+    </div>
+    <div class="cv-container" id="cv-content">
+        <div class="left-column">
+
+            <div class="header-content">
+                <div class="profile-text">
+                    <h1>Silvanio Gois</h1>
+                    <p class="subtitle">Comprometido e pronto para ir além.</p>
+                </div>
+                <img src="Executivo_sg_projetos.PNG" alt="Foto de Silvanio Gois" class="profile-photo">
+            </div>
+
+            <div class="section">
+                <h3>Objetivo</h3>
+                <p style="font-size: 0.95em;">Atuar nas áreas de <strong>Administração, Suprimentos, Orçamentação, Planejamento, Comercial ou Business Intelligence</strong>, contribuindo com experiência em gestão, negociação estratégica, otimização de processos e liderança colaborativa para gerar eficiência operacional e resultados sustentáveis.</p>
+            </div>
+            <div class="section">
+                <h3>Resumo Profissional</h3>
+                <p style="font-size: 0.95em;">Evolução consistente de Auxiliar a Líder Administrativo, com vivência prática e estratégica nos setores de <strong>Construção Civil, Logística e Petróleo & Gás</strong>. Experiência em orçamentação e planejamento de obras, gestão de equipes, negociações de alto impacto com fornecedores e análise de dados para decisões assertivas. Atuação integrada nos níveis operacional, tático e estratégico, sempre com foco em reduzir custos, aumentar eficiência e promover melhoria contínua dos processos.</p>
+            </div>
+            <div class="section">
+                <h3>Experiência Profissional</h3>
+
+                <div class="experience-item">
+                    <h4>Líder Administrativo | N&G Construções Civis</h4>
+                    <p class="details">84 meses (PJ) | Área da Petrobrás e Rodoanel</p>
+                    <ul>
+                        <li>Liderança de equipes administrativas e gestão de contratos e suprimentos em projetos de alta complexidade.</li>
+                        <li>Padronização de processos internos, melhorando produtividade e reduzindo retrabalhos.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>Comprador | Metodo Engenharia e Consórcio Potencial / Projectus / NM</h4>
+                    <p class="details">30 meses (CLT) | Área da Petrobrás</p>
+                    <ul>
+                        <li>Gestão de estoques e negociações estratégicas com fornecedores, obtendo melhores prazos e preços.</li>
+                        <li>Suporte logístico para obras, garantindo abastecimento e cumprimento de cronogramas.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>Enc. Adm | GB Construção</h4>
+                    <p class="details">35 meses (CLT/Autônomo) | Área da Sabesp</p>
+                    <ul>
+                        <li>Coordenação de rotinas administrativas, compras, estoque e transporte, garantindo fluxo contínuo de operações.</li>
+                        <li>Implementação de controles e indicadores, aumentando a eficiência operacional e reduzindo custos.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>Orçamentista e Planejador | Autônomo</h4>
+                    <p class="details">25 meses | Construção Civil</p>
+                    <ul>
+                        <li>Elaboração de orçamentos técnicos e planejamentos físico-financeiros precisos, assegurando prazos e custos competitivos.</li>
+                        <li>Otimização de recursos e processos, reduzindo desperdícios e aumentando a margem de lucro dos projetos.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>Assistente Comercial | Industec Com. e Montagens</h4>
+                    <p class="details">12 meses (CLT) | Petrobrás</p>
+                    <ul>
+                        <li>Suporte estratégico à diretoria e equipe comercial, contribuindo para fechamento de contratos de grande porte.</li>
+                        <li>Elaboração de orçamentos e documentos técnicos para licitações com alto índice de aprovação.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section">
+                <h3>Cursos e Qualificações (Enfoque Técnico e Quantitativo)</h3>
+                <div class="qualifications-summary">
+                    <p>Acumulei <strong>mais de 8.500 horas</strong> de capacitação e conhecimento técnico Multidisciplinar. Essencial para atuar com excelência em contextos complexos e desafiadores.</p>
+                </div>
+                <ul class="qualifications-list">
+                    <li>Gestão e Negócios: 2.300 horas</li>
+                    <li>Orçamentação e Planejamento: 1.955 horas</li>
+                    <li>Análise de dados e Business Intelligence: 1.395 horas</li>
+                    <li>Supply Chain e Logística: 627 horas</li>
+                    <li>Tecnologia e Produção: 581 horas</li>
+                    <li>Desenvolvimento Pessoal e Profissional: 516 horas</li>
+                    <li>Marketing Digital e Mídias Sociais: 442 horas</li>
+                    <li>Meio Ambiente: 434 horas</li>
+                    <li>Segurança do Trabalho: 131 horas</li>
+                    <li>Inglês Básico: 130 horas</li>
+                </ul>
+                <p style="font-size: 0.8em; margin-top: 10px;">Lista completa disponível em: <a href="https://www.silvaniogois.com.br/experiencia" style="color: var(--primary-color);" target="_blank">https://www.silvaniogois.com.br/experiencia</a></p>
+            </div>
+        </div>
+        <div class="right-column">
+            <div class="section">
+                <h3>Contato</h3>
+                <ul class="list-style-none">
+                    <li>Telefone: (13) 98830-1094</li>
+                    <li>E-mail: sg@silvaniogois.com.br</li>
+                    <li>Endereço: Cubatão / SP</li>
+                    <li>Website: <a href="https://www.silvaniogois.com.br" target="_blank">silvaniogois.com.br</a></li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>Formação</h3>
+                <ul class="list-style-none">
+                    <li>
+                        <strong>Técnico em Administração</strong> (CRA-SP/CFA)
+                    </li>
+                    <li>
+                        <strong>Técnico em Edificações</strong> (CRT-SP/CFT)
+                    </li>
+                    <li>
+                        <strong>Cursando Processos Gerenciais</strong> <br>
+                        (Conclusão prevista: Junho / 2026)
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>Idiomas</h3>
+                <ul class="list-style-none">
+                    <li>
+                        Inglês Básico (em desenvolvimento)
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>Informações Adicionais</h3>
+                <ul class="list-style-none">
+                    <li>Disponibilidade para viagens.</li>
+                    <li>CNH categoria AB.</li>
+                    <li>Disponibilidade imediata.</li>
+                </ul>
+            </div>
+            <div class="section bio-section">
+                <h3>Quem Sou Eu</h3>
+                <p>Minha trajetória é guiada por dedicação, aprendizado e foco na excelência. Com mais de 14 anos nos setores público e privado, atuei nas áreas administrativa, de suprimentos e liderança. Coordenei equipes, otimizei processos, elaborei propostas, negociei com fornecedores e gerei economia com eficiência.</p>
+            </div>
+            <div class="section bio-section">
+                <h3>Desenvolvimento Contínuo</h3>
+                <p>Sempre busquei evoluir. Me dediquei em áreas como BI, Orçamento, Marketing Digital, Logística, Tecnologia e Desenvolvimento Pessoal para acompanhar as demandas de um mercado dinâmico. Esse empenho mostra meu compromisso com soluções modernas, práticas e eficazes.</p>
+            </div>
+            <div class="section bio-section">
+                <h3>Meus Valores</h3>
+                <p>Sou guiado por <strong>ética, responsabilidade, organização e inteligência emocional</strong>. Acredito que o diferencial está na vontade de aprender, servir com qualidade e gerar resultados consistentemente.</p>
+            </div>
+            <div class="section bio-section">
+                <h3>Minha Busca</h3>
+                <p>Procuro novos desafios onde possa aplicar minha experiência, ampliar meu conhecimento e colaborar com empresas que valorizem propósito e entrega.</p>
+            </div>
+            <div class="qr-code-image">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://silvaniosg.github.io/entrevista/" alt="QR Code para Entrevista" class="qr-code">
+                <h4>Autoentrevista</h4>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('password-input').focus();
+        });
+
+        function checkPassword() {
+            const correctPassword = "1606";
+            const userInput = document.getElementById('password-input').value;
+            const overlay = document.getElementById('password-overlay');
+            const cvContent = document.getElementById('cv-content');
+            const errorMessage = document.getElementById('error-message');
+
+            if (userInput === correctPassword) {
+                overlay.style.display = 'none';
+                cvContent.style.display = 'flex';
+                document.getElementById('password-input').blur();
+            } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        }
+    </script>
+</body>
+</html>
