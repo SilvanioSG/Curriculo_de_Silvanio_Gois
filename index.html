@@ -18,15 +18,20 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             background-color: var(--light-bg);
             color: var(--text-color);
             line-height: 1.4;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .cv-container {
             max-width: 900px;
-            margin: 0 auto;
+            width: 100%;
+            margin: 20px;
             background-color: var(--white);
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
@@ -43,66 +48,126 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(247, 247, 247, 0.95);
+            background-color: rgba(247, 247, 247, 0.98);
             z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 20px;
+            padding: 15px;
             box-sizing: border-box;
+            overflow-y: auto; /* Permite rolagem se necessário em telas muito pequenas */
         }
 
         #password-box {
-            padding: 30px;
+            padding: 25px 20px;
             background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
-            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 420px;
             width: 100%;
+            margin: auto;
+            transition: all 0.3s ease;
+        }
+
+        /* Estilo para a foto na tela de login - VERSÃO RESPONSIVA OTIMIZADA */
+        .login-photo {
+            width: min(120px, 25vw); /* Adapta entre desktop e mobile */
+            height: min(120px, 25vw);
+            max-width: 120px;
+            max-height: 120px;
+            min-width: 80px;
+            min-height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin: 5px auto 10px auto;
+            display: block;
+        }
+
+        .login-name {
+            color: var(--primary-color);
+            font-size: clamp(1.3em, 5vw, 1.8em); /* Responsivo: mínimo 1.3em, máximo 1.8em */
+            margin: 5px 0 3px 0;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .login-subtitle {
+            color: var(--accent-color);
+            font-size: clamp(0.85em, 3vw, 1em);
+            font-style: italic;
+            margin-bottom: 15px;
+            font-weight: normal;
+            line-height: 1.3;
+            padding: 0 10px;
         }
 
         #password-input {
-            padding: 12px;
+            padding: 12px 15px;
             margin: 15px 0 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 80%;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            width: 100%;
+            max-width: 280px;
             box-sizing: border-box;
             font-size: 1em;
             text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        #password-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(26, 67, 113, 0.2);
         }
 
         #acessar-button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 1em;
-            margin-top: 10px;
+            margin: 5px 0 10px 0;
+            transition: background-color 0.3s, transform 0.1s;
+            min-width: 160px;
         }
 
         #acessar-button:hover {
             background-color: #123152;
+            transform: scale(1.02);
+        }
+
+        #acessar-button:active {
+            transform: scale(0.98);
         }
 
         .whatsapp-button {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 20px;
             background-color: #25D366;
             color: white;
-            border-radius: 4px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s;
+            margin: 15px 0 10px 0;
+            transition: background-color 0.3s, transform 0.1s;
+            font-size: 0.95em;
+            width: auto;
+            max-width: 280px;
         }
 
         .whatsapp-button:hover {
             background-color: #1DA851;
+            transform: scale(1.02);
+        }
+
+        .whatsapp-button:active {
+            transform: scale(0.98);
         }
 
         /* Oculta o container do CV até a senha ser verificada */
@@ -111,8 +176,224 @@
             width: 100%;
         }
 
+        /* Estilo para a tela de download após a senha */
+        #download-content {
+            display: none;
+            width: 100%;
+            padding: 30px 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .download-box {
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            background-color: #f0f8ff;
+            border-radius: 12px;
+            border: 2px dashed var(--primary-color);
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: clamp(1.1em, 4vw, 1.3em);
+            font-weight: bold;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .download-button:hover {
+            background-color: #123152;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.95em;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+
+        /* Ajustes específicos para diferentes tamanhos de tela */
+        @media (min-width: 1200px) {
+            /* Desktop grande - foto menor proporcionalmente */
+            .login-photo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .login-name {
+                font-size: 1.6em;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1199px) {
+            /* Desktop padrão - tamanho ajustado */
+            .login-photo {
+                width: 110px;
+                height: 110px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Tablets */
+            #password-box {
+                padding: 20px 15px;
+                max-width: 380px;
+            }
+            
+            .login-photo {
+                width: 95px;
+                height: 95px;
+                border-width: 4px;
+            }
+            
+            .login-name {
+                font-size: 1.5em;
+            }
+            
+            .whatsapp-button {
+                font-size: 0.9em;
+                padding: 10px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Celulares */
+            #password-overlay {
+                padding: 10px;
+                align-items: flex-start; /* Evita compressão extrema */
+                padding-top: 20px;
+            }
+            
+            #password-box {
+                padding: 15px 12px;
+                max-width: 320px;
+            }
+            
+            .login-photo {
+                width: 85px;
+                height: 85px;
+                border-width: 3px;
+                margin-top: 0;
+            }
+            
+            .login-name {
+                font-size: 1.3em;
+            }
+            
+            .login-subtitle {
+                font-size: 0.85em;
+                padding: 0 5px;
+            }
+            
+            #password-input {
+                padding: 10px;
+                font-size: 0.95em;
+                max-width: 240px;
+            }
+            
+            #acessar-button {
+                padding: 10px 20px;
+                font-size: 0.95em;
+                min-width: 140px;
+            }
+            
+            .whatsapp-button {
+                font-size: 0.85em;
+                padding: 10px 12px;
+                max-width: 240px;
+                margin: 10px 0;
+            }
+            
+            hr {
+                margin: 15px 0;
+            }
+        }
+
+        @media (max-width: 360px) {
+            /* Celulares muito pequenos */
+            #password-box {
+                padding: 12px 10px;
+            }
+            
+            .login-photo {
+                width: 75px;
+                height: 75px;
+            }
+            
+            .login-name {
+                font-size: 1.2em;
+            }
+            
+            .login-subtitle {
+                font-size: 0.8em;
+            }
+            
+            #password-input {
+                max-width: 200px;
+            }
+            
+            .whatsapp-button {
+                max-width: 200px;
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-height: 600px) and (orientation: landscape) {
+            /* Ajuste para landscape em celulares */
+            #password-overlay {
+                align-items: center;
+                padding: 10px;
+            }
+            
+            #password-box {
+                padding: 15px;
+                max-width: 500px;
+            }
+            
+            .login-photo {
+                width: 70px;
+                height: 70px;
+                margin: 0 auto 5px;
+            }
+            
+            .login-name {
+                font-size: 1.2em;
+                margin: 2px 0;
+            }
+            
+            .login-subtitle {
+                font-size: 0.8em;
+                margin-bottom: 8px;
+            }
+            
+            #password-input {
+                margin: 8px 0;
+            }
+            
+            hr {
+                margin: 12px 0;
+            }
+        }
+
         /* -------------------------------------- */
-        /* SEUS ESTILOS ORIGINAIS CONTINUAM AQUI */
+        /* SEUS ESTILOS ORIGINAIS (mantidos) */
         /* -------------------------------------- */
         .left-column {
             width: 70%;
@@ -120,6 +401,7 @@
             box-sizing: border-box;
         }
 
+        /* ... outros estilos originais permanecem iguais ... */
         .left-column h3 {
             font-size: 1.4em;
             color: var(--primary-color);
@@ -130,7 +412,6 @@
             text-transform: uppercase;
         }
 
-        /* Estilo do Cabeçalho e Foto */
         .header-content {
             display: flex;
             align-items: center;
@@ -165,7 +446,6 @@
             margin-left: 30px;
         }
 
-        /* Estilo para Experiência */
         .experience-item {
             margin-bottom: 20px;
             padding-left: 10px;
@@ -192,12 +472,6 @@
             list-style: disc;
         }
 
-        .experience-item p {
-            font-size: 0.9em;
-            margin: 5px 0;
-        }
-
-        /* Estilo para Qualificações */
         .qualifications-summary p {
             font-size: 0.9em;
             margin-bottom: 15px;
@@ -218,7 +492,6 @@
             list-style-type: disc;
         }
 
-        /* Coluna Lateral - Direita (30%) */
         .right-column {
             width: 30%;
             background-color: var(--primary-color);
@@ -265,7 +538,6 @@
             margin-bottom: 10px;
         }
 
-        /* Estilo para o QR Code e título "Autoentrevista" */
         .qr-code-image {
             text-align: center;
             margin-top: 20px;
@@ -284,7 +556,6 @@
             font-size: 1em;
         }
 
-        /* Mídia Queries para Responsividade */
         @media (max-width: 768px) {
             .cv-container {
                 flex-direction: column;
@@ -317,117 +588,40 @@
             body {
                 margin: 0;
                 padding: 0;
-                /* Define a fonte padrão para impressão */
                 font-size: 10pt;
             }
 
             #password-overlay {
-                display: none !important; /* Garante que o overlay não apareça na impressão */
+                display: none !important;
             }
 
             .cv-container {
                 max-width: 100%;
-                /* Remove sombra e borda na impressão */
                 box-shadow: none;
                 border-radius: 0;
             }
 
-            /* Reduz margens de todas as colunas */
             .left-column,
             .right-column {
                 padding: 15px 10px;
             }
 
-            /* Ajuste fino dos tamanhos de fonte e espaçamentos */
-            h1 {
-                font-size: 1.8em !important;
-            }
-
-            .subtitle {
-                font-size: 0.9em !important;
-            }
-
-            .left-column h3 {
-                font-size: 1.1em !important;
-                margin-top: 15px;
-                margin-bottom: 8px;
-                padding-bottom: 2px;
-                /* Força a cor preta ou mantém a cor (depende da impressora) */
-                color: #000 !important;
-                border-bottom-width: 1px;
-            }
-
-            .experience-item {
-                margin-bottom: 10px;
-            }
-
-            .experience-item h4 {
-                font-size: 1em !important;
-            }
-
-            .experience-item .details,
-            .experience-item p,
-            .experience-item ul,
-            .qualifications-summary p {
-                font-size: 0.8em !important;
-                line-height: 1.3;
-                margin: 2px 0;
-            }
-
-            .experience-item ul {
-                margin: 2px 0 0 0;
-            }
-
-            .qualifications-list {
-                font-size: 0.8em !important;
-                gap: 2px 8px;
-            }
-
-            /* Reduz o tamanho da foto */
             .profile-photo {
                 width: 100px;
                 height: 100px;
                 margin-left: 15px;
             }
 
-            /* Coluna da Direita */
             .right-column {
-                padding: 15px 10px;
-                /* Garante que o fundo e o texto da coluna direita sejam impressos */
                 -webkit-print-color-adjust: exact;
-                color-adjust: exact;
+                print-color-adjust: exact;
                 background-color: var(--primary-color) !important;
                 color: var(--white) !important;
-            }
-
-            .right-column h3 {
-                font-size: 1em !important;
-                margin-top: 10px;
-                margin-bottom: 8px;
-                padding-bottom: 2px;
-            }
-
-            .list-style-none li,
-            .bio-section p {
-                font-size: 0.8em !important;
-                line-height: 1.3;
-                margin: 3px 0;
-            }
-
-            /* Reduz a seção do QR Code */
-            .qr-code-image {
-                margin-top: 10px;
-                padding-top: 5px;
             }
 
             .qr-code-image img {
                 width: 70px;
                 height: 70px;
-                border-width: 3px;
-            }
-
-            .qr-code-image h4 {
-                font-size: 0.8em;
             }
         }
     </style>
@@ -436,33 +630,39 @@
 
     <div id="password-overlay">
         <div id="password-box">
-            <h2 style="color: var(--primary-color); margin-bottom: 15px;">Acesso Restrito</h2>
-            <p style="color: var(--text-color); font-size: 1em;">
-                Para acessar o conteúdo completo, por favor, solicite a senha ou digite a chave que já foi fornecida.
+            <!-- Foto na tela de login - tamanho responsivo otimizado -->
+            <img src="Executivo_Silvanio_Gestor.PNG" alt="Silvanio Gois" class="login-photo">
+            <h1 class="login-name">Silvanio Gois</h1>
+            <p class="login-subtitle">Comprometido e pronto para ir além</p>
+            
+            <h2 style="color: var(--primary-color); margin: 5px 0 10px 0; font-size: clamp(1.1em, 4vw, 1.5em);">Acesso Restrito</h2>
+            <p style="color: var(--text-color); font-size: clamp(0.85em, 3vw, 1em); max-width: 300px; margin: 0 auto 10px;">
+                Digite a senha para acessar o currículo
             </p>
 
             <input type="password" id="password-input" placeholder="Senha de Acesso" onkeyup="if(event.key === 'Enter') checkPassword()">
             <button id="acessar-button" onclick="checkPassword()">Acessar Currículo</button>
 
-            <p id="error-message" style="color: red; margin-top: 15px; font-size: 0.9em; display: none;">Senha incorreta. Tente novamente.</p>
+            <p id="error-message" style="color: red; margin-top: 10px; font-size: 0.9em; display: none;">Senha incorreta. Tente novamente.</p>
 
-            <hr style="border: 0; border-top: 1px solid #ddd; margin: 25px 0;">
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
 
-            <p style="color: var(--text-color); font-size: 0.9em;">
-                Solicite a senha através do WhatsApp:
+            <p style="color: var(--text-color); font-size: 0.9em; margin-bottom: 5px;">
+                Solicite a senha:
             </p>
             <a href="https://wa.me/5513988301094?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20a%20senha%20para%20acessar%20o%20curr%C3%ADculo%20de%20Silvanio%20Gois." target="_blank" class="whatsapp-button">
-                &#x2705; Solicitar Senha por WhatsApp
+                📱 Solicitar por WhatsApp
             </a>
 
-            <p style="font-size: 0.75em; color: #666; margin-top: 25px;">
-                Esta restrição de acesso é uma <strong>medida de segurança</strong> para proteger meus dados pessoais, em conformidade com as boas práticas de <strong>LGPD</strong>.
+            <p style="font-size: 0.7em; color: #888; margin-top: 20px; max-width: 300px; margin-left: auto; margin-right: auto;">
+                Proteção de dados em conformidade com a LGPD
             </p>
         </div>
     </div>
-    <div class="cv-container" id="cv-content">
-        <div class="left-column">
 
+    <div class="cv-container" id="cv-content" style="display: none;">
+        <!-- Conteúdo original do currículo (mantido oculto) -->
+        <div class="left-column">
             <div class="header-content">
                 <div class="profile-text">
                     <h1>Silvanio Gois</h1>
@@ -602,6 +802,35 @@
         </div>
     </div>
 
+    <div class="cv-container" id="download-content">
+        <div class="download-box">
+            <h1 style="color: var(--primary-color); margin-bottom: 10px; font-size: clamp(1.3em, 5vw, 1.8em);">📄 Currículo Disponível</h1>
+            <p style="font-size: clamp(0.95em, 3.5vw, 1.1em); color: var(--text-color); margin-bottom: 15px;">
+                Clique no botão abaixo para baixar o currículo completo.
+            </p>
+            
+            <a href="https://drive.google.com/uc?export=download&id=1mTXUgRgT_nyCdlzh_mITTiWWPwbTgYmy" class="download-button">
+                ⬇️ Baixar Currículo (PDF)
+            </a>
+            
+            <p style="font-size: 0.9em; color: #666; margin-top: 10px;">
+                Se o download não iniciar, <a href="https://drive.google.com/file/d/1mTXUgRgT_nyCdlzh_mITTiWWPwbTgYmy/view?usp=sharing" target="_blank" style="color: var(--primary-color);">clique aqui</a> para visualizar.
+            </p>
+            
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 25px 0 15px 0;">
+            
+            <div style="text-align: left; background-color: var(--white); padding: 15px; border-radius: 8px;">
+                <h3 style="color: var(--primary-color); margin-top: 0; font-size: 1.1em;">Informações de Contato</h3>
+                <p style="margin: 5px 0;"><strong>Silvanio Gois</strong></p>
+                <p style="margin: 5px 0;">📞 (13) 98830-1094</p>
+                <p style="margin: 5px 0;">✉️ sg@silvaniogois.com.br</p>
+                <p style="margin: 5px 0;">🌐 <a href="https://www.silvaniogois.com.br" target="_blank" style="color: var(--primary-color);">silvaniogois.com.br</a></p>
+            </div>
+            
+            <a class="back-button" onclick="voltarParaSenha()">← Voltar para a tela de senha</a>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('password-input').focus();
@@ -611,18 +840,26 @@
             const correctPassword = "1606";
             const userInput = document.getElementById('password-input').value;
             const overlay = document.getElementById('password-overlay');
-            const cvContent = document.getElementById('cv-content');
+            const downloadContent = document.getElementById('download-content');
             const errorMessage = document.getElementById('error-message');
 
             if (userInput === correctPassword) {
                 overlay.style.display = 'none';
-                cvContent.style.display = 'flex';
+                downloadContent.style.display = 'flex';
                 document.getElementById('password-input').blur();
             } else {
                 errorMessage.style.display = 'block';
                 document.getElementById('password-input').value = '';
                 document.getElementById('password-input').focus();
             }
+        }
+
+        function voltarParaSenha() {
+            document.getElementById('download-content').style.display = 'none';
+            document.getElementById('password-overlay').style.display = 'flex';
+            document.getElementById('password-input').value = '';
+            document.getElementById('password-input').focus();
+            document.getElementById('error-message').style.display = 'none';
         }
     </script>
 </body>
