@@ -2,23 +2,26 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Currículo - Silvanio Gois</title>
     <style>
-        /* Variáveis de Cores */
+        /* ---------- VARIÁVEIS E RESET ---------- */
         :root {
-            --primary-color: #1a4371; /* Azul Escuro */
-            --accent-color: #ffcc00; /* Amarelo/Dourado (para destaque) */
+            --primary-color: #1a4371;
+            --accent-color: #ffcc00;
             --text-color: #333;
             --light-bg: #f7f7f7;
             --white: #ffffff;
         }
 
-        /* Estilos Globais para Tela */
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
             background-color: var(--light-bg);
             color: var(--text-color);
             line-height: 1.4;
@@ -28,6 +31,7 @@
             justify-content: center;
         }
 
+        /* ---------- CONTAINER PRINCIPAL (tela de download) ---------- */
         .cv-container {
             max-width: 900px;
             width: 100%;
@@ -39,9 +43,7 @@
             flex-wrap: wrap;
         }
 
-        /* -------------------------------------- */
-        /* ESTILOS ESPECÍFICOS PARA O OVERLAY */
-        /* -------------------------------------- */
+        /* ---------- OVERLAY DE SENHA ---------- */
         #password-overlay {
             position: fixed;
             top: 0;
@@ -55,7 +57,7 @@
             align-items: center;
             padding: 15px;
             box-sizing: border-box;
-            overflow-y: auto; /* Permite rolagem se necessário em telas muito pequenas */
+            overflow-y: auto;
         }
 
         #password-box {
@@ -66,12 +68,12 @@
             max-width: 420px;
             width: 100%;
             margin: auto;
+            text-align: center;
             transition: all 0.3s ease;
         }
 
-        /* Estilo para a foto na tela de login - VERSÃO RESPONSIVA OTIMIZADA */
         .login-photo {
-            width: min(120px, 25vw); /* Adapta entre desktop e mobile */
+            width: min(120px, 25vw);
             height: min(120px, 25vw);
             max-width: 120px;
             max-height: 120px;
@@ -87,7 +89,7 @@
 
         .login-name {
             color: var(--primary-color);
-            font-size: clamp(1.3em, 5vw, 1.8em); /* Responsivo: mínimo 1.3em, máximo 1.8em */
+            font-size: clamp(1.3em, 5vw, 1.8em);
             margin: 5px 0 3px 0;
             font-weight: bold;
             letter-spacing: 0.5px;
@@ -170,13 +172,7 @@
             transform: scale(0.98);
         }
 
-        /* Oculta o container do CV até a senha ser verificada */
-        #cv-content {
-            display: none;
-            width: 100%;
-        }
-
-        /* Estilo para a tela de download após a senha */
+        /* ---------- TELA DE DOWNLOAD (APÓS SENHA) ---------- */
         #download-content {
             display: none;
             width: 100%;
@@ -229,21 +225,18 @@
             text-decoration: underline;
         }
 
-        /* Ajustes específicos para diferentes tamanhos de tela */
+        /* ---------- RESPONSIVIDADE (SOMENTE ELEMENTOS ATIVOS) ---------- */
         @media (min-width: 1200px) {
-            /* Desktop grande - foto menor proporcionalmente */
             .login-photo {
                 width: 100px;
                 height: 100px;
             }
-            
             .login-name {
                 font-size: 1.6em;
             }
         }
 
         @media (min-width: 769px) and (max-width: 1199px) {
-            /* Desktop padrão - tamanho ajustado */
             .login-photo {
                 width: 110px;
                 height: 110px;
@@ -251,22 +244,18 @@
         }
 
         @media (max-width: 768px) {
-            /* Tablets */
             #password-box {
                 padding: 20px 15px;
                 max-width: 380px;
             }
-            
             .login-photo {
                 width: 95px;
                 height: 95px;
                 border-width: 4px;
             }
-            
             .login-name {
                 font-size: 1.5em;
             }
-            
             .whatsapp-button {
                 font-size: 0.9em;
                 padding: 10px 15px;
@@ -274,81 +263,66 @@
         }
 
         @media (max-width: 480px) {
-            /* Celulares */
             #password-overlay {
                 padding: 10px;
-                align-items: flex-start; /* Evita compressão extrema */
+                align-items: flex-start;
                 padding-top: 20px;
             }
-            
             #password-box {
                 padding: 15px 12px;
                 max-width: 320px;
             }
-            
             .login-photo {
                 width: 85px;
                 height: 85px;
                 border-width: 3px;
                 margin-top: 0;
             }
-            
             .login-name {
                 font-size: 1.3em;
             }
-            
             .login-subtitle {
                 font-size: 0.85em;
                 padding: 0 5px;
             }
-            
             #password-input {
                 padding: 10px;
                 font-size: 0.95em;
                 max-width: 240px;
             }
-            
             #acessar-button {
                 padding: 10px 20px;
                 font-size: 0.95em;
                 min-width: 140px;
             }
-            
             .whatsapp-button {
                 font-size: 0.85em;
                 padding: 10px 12px;
                 max-width: 240px;
                 margin: 10px 0;
             }
-            
             hr {
                 margin: 15px 0;
             }
         }
 
         @media (max-width: 360px) {
-            /* Celulares muito pequenos */
             #password-box {
                 padding: 12px 10px;
             }
-            
             .login-photo {
                 width: 75px;
                 height: 75px;
             }
-            
             .login-name {
                 font-size: 1.2em;
             }
-            
             .login-subtitle {
                 font-size: 0.8em;
             }
-            
             #password-input {
                 max-width: 200px;
             }
-            
             .whatsapp-button {
                 max-width: 200px;
                 font-size: 0.8em;
@@ -356,281 +330,65 @@
         }
 
         @media (max-height: 600px) and (orientation: landscape) {
-            /* Ajuste para landscape em celulares */
             #password-overlay {
                 align-items: center;
                 padding: 10px;
             }
-            
             #password-box {
                 padding: 15px;
                 max-width: 500px;
             }
-            
             .login-photo {
                 width: 70px;
                 height: 70px;
                 margin: 0 auto 5px;
             }
-            
             .login-name {
                 font-size: 1.2em;
                 margin: 2px 0;
             }
-            
             .login-subtitle {
                 font-size: 0.8em;
                 margin-bottom: 8px;
             }
-            
             #password-input {
                 margin: 8px 0;
             }
-            
             hr {
                 margin: 12px 0;
             }
         }
 
-        /* -------------------------------------- */
-        /* SEUS ESTILOS ORIGINAIS (mantidos) */
-        /* -------------------------------------- */
-        .left-column {
-            width: 70%;
-            padding: 30px;
-            box-sizing: border-box;
-        }
-
-        /* ... outros estilos originais permanecem iguais ... */
-        .left-column h3 {
-            font-size: 1.4em;
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 5px;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .profile-text {
-            flex-grow: 1;
-        }
-
-        .profile-text h1 {
-            color: var(--primary-color);
-            font-size: 2.5em;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        .profile-text .subtitle {
-            color: var(--accent-color);
-            font-size: 1.1em;
-            font-style: italic;
-            margin-top: 5px;
-        }
-
-        .profile-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary-color);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            margin-left: 30px;
-        }
-
-        .experience-item {
-            margin-bottom: 20px;
-            padding-left: 10px;
-            border-left: 3px solid var(--accent-color);
-        }
-
-        .experience-item h4 {
-            margin: 0 0 3px 0;
-            font-size: 1.1em;
-            color: var(--text-color);
-            font-weight: bold;
-        }
-
-        .experience-item .details {
-            font-size: 0.9em;
-            color: #666;
-            margin: 0 0 5px 0;
-        }
-
-        .experience-item ul {
-            padding-left: 20px;
-            margin: 5px 0 0 0;
-            font-size: 0.9em;
-            list-style: disc;
-        }
-
-        .qualifications-summary p {
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
-
-        .qualifications-list {
-            list-style: disc;
-            padding-left: 20px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 5px 15px;
-            font-size: 0.9em;
-        }
-
-        .qualifications-list li {
-            border-bottom: 1px dashed #ccc;
-            padding-bottom: 3px;
-            list-style-type: disc;
-        }
-
-        .right-column {
-            width: 30%;
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 30px 20px;
-            box-sizing: border-box;
-        }
-
-        .right-column h3 {
-            font-size: 1.2em;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 5px;
-            margin-top: 20px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .contact-info p,
-        .list-style-none li {
-            margin: 5px 0;
-            font-size: 0.9em;
-        }
-
-        .list-style-none {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .list-style-none li strong {
-            display: block;
-        }
-
-        .list-style-none a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        .list-style-none a:hover {
-            text-decoration: underline;
-        }
-
-        .bio-section p {
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-
-        .qr-code-image {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
-        }
-
-        .qr-code-image img {
-            width: 100px;
-            height: 100px;
-            border: 5px solid var(--accent-color);
-        }
-
-        .qr-code-image h4 {
-            color: var(--white);
-            margin-top: 10px;
-            font-size: 1em;
-        }
-
-        @media (max-width: 768px) {
-            .cv-container {
-                flex-direction: column;
-            }
-
-            .left-column,
-            .right-column {
-                width: 100%;
-                padding: 20px;
-            }
-
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .profile-photo {
-                margin: 15px 0 0 0;
-            }
-
-            .qualifications-list {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ------------------------------------------- */
-        /* ESTILOS ESPECÍFICOS PARA IMPRESSÃO (PDF)    */
-        /* ------------------------------------------- */
+        /* ---------- IMPRESSÃO (apenas o necessário) ---------- */
         @media print {
             body {
                 margin: 0;
                 padding: 0;
-                font-size: 10pt;
             }
-
             #password-overlay {
                 display: none !important;
             }
-
             .cv-container {
                 max-width: 100%;
                 box-shadow: none;
                 border-radius: 0;
+                margin: 0;
+                padding: 10px;
             }
-
-            .left-column,
-            .right-column {
-                padding: 15px 10px;
-            }
-
-            .profile-photo {
-                width: 100px;
-                height: 100px;
-                margin-left: 15px;
-            }
-
-            .right-column {
+            .download-button {
+                background-color: var(--primary-color) !important;
+                color: white !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                background-color: var(--primary-color) !important;
-                color: var(--white) !important;
-            }
-
-            .qr-code-image img {
-                width: 70px;
-                height: 70px;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- TELA DE SENHA (OVERLAY) -->
     <div id="password-overlay">
         <div id="password-box">
-            <!-- Foto na tela de login - tamanho responsivo otimizado -->
             <img src="Executivo_Silvanio_Gestor.PNG" alt="Silvanio Gois" class="login-photo">
             <h1 class="login-name">Silvanio Gois</h1>
             <p class="login-subtitle">Comprometido e pronto para ir além</p>
@@ -651,7 +409,7 @@
                 Solicite a senha:
             </p>
             <a href="https://wa.me/5513988301094?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20a%20senha%20para%20acessar%20o%20curr%C3%ADculo%20de%20Silvanio%20Gois." target="_blank" class="whatsapp-button">
-                📱 Solicitar por WhatsApp
+                 Solicitar por WhatsApp
             </a>
 
             <p style="font-size: 0.7em; color: #888; margin-top: 20px; max-width: 300px; margin-left: auto; margin-right: auto;">
@@ -660,148 +418,7 @@
         </div>
     </div>
 
-    <div class="cv-container" id="cv-content" style="display: none;">
-        <!-- Conteúdo original do currículo (mantido oculto) -->
-        <div class="left-column">
-            <div class="header-content">
-                <div class="profile-text">
-                    <h1>Silvanio Gois</h1>
-                    <p class="subtitle">Comprometido e pronto para ir além.</p>
-                </div>
-                <img src="Executivo_sg_projetos.PNG" alt="Foto de Silvanio Gois" class="profile-photo">
-            </div>
-
-            <div class="section">
-                <h3>Objetivo</h3>
-                <p style="font-size: 0.95em;">Assumir a liderança em Gestão e Negócios com protagonismo e visão sistêmica, definindo o rumo para o crescimento sustentável e a maximização da rentabilidade da organização; aplicando Inteligência de Negócios, Viabilidade de Custos e Gestão Estratégica de Suprimentos, para a otimização de processos end-to-end e a excelência na entrega de valor em ambientes complexos...</p>
-            </div>
-            <div class="section">
-                <h3>Resumo Profissional</h3>
-                <p style="font-size: 0.95em;">Liderança Estratégica (14+ anos) com evolução do operacional à gestão sênior em Construção Civil, Logística e P&G. Atuo como agente de transformação, orquestrando a integração Estratégico, Tático e Operacional. Expertise em Viabilidade de Custos, Inteligência de Negócios (data-driven) e Governança de Suprimentos (negociação de alto impacto e liderança). Histórico de sucesso na catalisação da redução de custos e aumento da eficiência operacional via melhoria contínua.</p>
-            </div>
-            <div class="section">
-                <h3>Experiência Profissional</h3>
-
-                <div class="experience-item">
-                    <h4>Orçamentista e Planejador</h4>
-                    <p class="details">25 meses (Freelance) | Construção Civil (B2G e B2B)</p>
-                    <ul>
-                        <li>Engenharia de Custos e Viabilidade: Gestão integral do ciclo físico-financeiro de projetos. Aplicação de Inteligência de Negócios (BI) para modelagem de cenários de risco, fornecendo suporte estratégico à decisão executiva e maximizando a rentabilidade.</li>
-                    </ul>
-                </div>
-                <div class="experience-item">
-                    <h4>Comercial | Industec</h4>
-                    <p class="details">12 meses (CLT) | Óleo e Gás (Petrobras, TAG, NTS)</p>
-                    <ul>
-                        <li>Gestão de Propostas (Bid Management) e Inteligência Comercial: Elaboração estratégica de propostas técnicas para o setor de Oil & Gas. Gestão de Compliance contratual e documental, atuando como ponto focal em negociações complexas com stakeholders públicos e privados.</li>
-                    </ul>
-                </div>
-                <div class="experience-item">
-                    <h4>Gestor | GB Construção</h4>
-                    <p class="details">35 meses (CLT/Autônomo) | Saneamento (Sabesp) e Infraestrutura Logística</p>
-                    <ul>
-                        <li>Gestão de Contratos e Controladoria de Obras: Liderança na gestão de procurement e cadeia de suprimentos local. Interface estratégica entre operação e departamentos fiscais/contábeis, garantindo a eficiência alocativa de recursos em projetos de infraestrutura crítica.</li>
-                    </ul>
-                </div>
-                <div class="experience-item">
-                    <h4>Líder Administrativo | N&G Construções </h4>
-                    <p class="details">| 84 meses (PJ) | Área da Petrobrás e Rodoanel (Infraestrutura Logística)</p>
-                    <ul>
-                        <li>Liderança de Equipes e Excelência Operacional: Coordenação de times multidisciplinares em ambientes de alta complexidade e periculosidade. Gestão logística integrada com foco em Melhoria Contínua e otimização de fluxos de trabalho em terminais industriais.</li>
-                    </ul>
-                </div>
-                <div class="experience-item">
-                    <h4>Gestão de Suprimentos | Metodo Engenharia e Consórcio Potencial / Projectus / NM</h4>
-                    <p class="details">30 meses CLT) | Petrobras (Refinarias e Terminais)</p>
-                    <ul>
-                        <li>Gestão de Cadeia de Suprimentos (Supply Chain) e Estoques: Controle estratégico de Inbound Logistics, inventários de alta precisão e gestão de ativos. Atuação focada na garantia de disponibilidade de materiais críticos para operação contínua de refinarias e terminais.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="section">
-                <h3>Cursos e Qualificações (Enfoque Técnico e Quantitativo)</h3>
-                <div class="qualifications-summary">
-                    <p>Acumulei <strong>mais de 8.700 horas</strong> de capacitação e conhecimento técnico Multidisciplinar. Essencial para atuar com excelência em contextos complexos e desafiadores.</p>
-                </div>
-                <ul class="qualifications-list">
-                    <li>Gestão e Negócios: 2.314 horas</li>
-                    <li>Orçamentação e Planejamento: 1.967 horas</li>
-                    <li>Análise de dados e Business Intelligence: 1.555 horas</li>
-                    <li>Tecnologia e Produção: 674 horas</li>
-                    <li>Supply Chain e Logística: 627 horas</li>
-                    <li>Desenvolvimento Pessoal e Profissional: 516 horas</li>
-                    <li>Marketing Digital e Mídias Sociais: 442 horas</li>
-                    <li>Meio Ambiente: 434 horas</li>
-                    <li>Inglês Básico: 138 horas</li>
-                    <li>Segurança do Trabalho: 131 horas</li>
-                </ul>
-                <p style="font-size: 0.8em; margin-top: 10px;">Lista completa disponível em: <a href="https://www.silvaniogois.com.br/experiencia" style="color: var(--primary-color);" target="_blank">https://www.silvaniogois.com.br/experiencia</a></p>
-            </div>
-        </div>
-        <div class="right-column">
-            <div class="section">
-                <h3>Contato</h3>
-                <ul class="list-style-none">
-                    <li>Telefone: (13) 98830-1094</li>
-                    <li>E-mail: sg@silvaniogois.com.br</li>
-                    <li>Endereço: Cubatão / SP</li>
-                    <li>Website: <a href="https://www.silvaniogois.com.br" target="_blank">silvaniogois.com.br</a></li>
-                </ul>
-            </div>
-            <div class="section">
-                <h3>Formação</h3>
-                <ul class="list-style-none">
-                    <li>
-                        <strong>Técnico em Administração</strong> (CRA-SP/CFA)
-                    </li>
-                    <li>
-                        <strong>Técnico em Edificações</strong> (CRT-SP/CFT)
-                    </li>
-                    <li>
-                        <strong>Cursando Processos Gerenciais</strong> <br>
-                        (Conclusão prevista: Junho / 2026)
-                    </li>
-                </ul>
-            </div>
-            <div class="section">
-                <h3>Idiomas</h3>
-                <ul class="list-style-none">
-                    <li>
-                        Inglês Básico (em desenvolvimento)
-                    </li>
-                </ul>
-            </div>
-            <div class="section">
-                <h3>Informações Adicionais</h3>
-                <ul class="list-style-none">
-                    <li>Disponibilidade para viagens.</li>
-                    <li>CNH categoria AB.</li>
-                    <li>Disponibilidade imediata.</li>
-                </ul>
-            </div>
-            <div class="section bio-section">
-                <h3>Quem Sou Eu</h3>
-                <p>Liderança Estratégica e Visão Sistêmica: Minha filosofia é baseada em excelência na Gestão Administrativa e de Negócios. Em setores público e privado, minha expertise em coordenação de equipes, otimização de processos e negociação de alto impacto assegura a entrega de valor através do planejamento eficaz e da melhoria contínua.</p>
-            </div>
-            <div class="section bio-section">
-                <h3>Desenvolvimento Contínuo</h3>
-                <p>Capital Humano: Mais de 8.700h de capacitação em Inteligência de Negócios (BI), Viabilidade de Custos, Logística, Tecnologia e Liderança, acompanhando a dinâmica do mercado. Este empenho assegura o compromisso com a inovação, soluções estratégicas e a geração de eficiência operacional.</p>
-            </div>
-            <div class="section bio-section">
-                <h3>Meus Valores</h3>
-                <p>Liderança guiada por Ética, Governança e Inteligência Emocional. Meu diferencial reside na capacidade de aprender continuamente, promover a excelência na qualidade da entrega e garantir resultados de alto valor e consistência.</p>
-            </div>
-            <div class="section bio-section">
-                <h3>Minha Busca</h3>
-                <p>Busco posições de Liderança onde minha experiência e visão sistêmica impulsionem a rentabilidade. Almejo colaborar com empresas que valorizem a excelência na entrega de resultados e o propósito estratégico.</p>
-            </div>
-            <div class="qr-code-image">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://silvaniosg.github.io/entrevista/" alt="QR Code para Entrevista" class="qr-code">
-                <h4>Autoentrevista</h4>
-            </div>
-        </div>
-    </div>
-
+    <!-- TELA DE DOWNLOAD (VISÍVEL APÓS SENHA CORRETA) -->
     <div class="cv-container" id="download-content">
         <div class="download-box">
             <h1 style="color: var(--primary-color); margin-bottom: 10px; font-size: clamp(1.3em, 5vw, 1.8em);">📄 Currículo Disponível</h1>
@@ -809,6 +426,7 @@
                 Clique no botão abaixo para baixar o currículo completo.
             </p>
             
+            <!-- LINK DIRETO PARA DOWNLOAD DO PDF (Google Drive) -->
             <a href="https://drive.google.com/uc?export=download&id=1mTXUgRgT_nyCdlzh_mITTiWWPwbTgYmy" class="download-button">
                 ⬇️ Baixar Currículo (PDF)
             </a>
@@ -832,10 +450,13 @@
     </div>
 
     <script>
+        // Foco inicial no campo de senha
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('password-input').focus();
+            const input = document.getElementById('password-input');
+            if (input) input.focus();
         });
 
+        // Verifica a senha e exibe a tela de download
         function checkPassword() {
             const correctPassword = "1606";
             const userInput = document.getElementById('password-input').value;
@@ -847,19 +468,23 @@
                 overlay.style.display = 'none';
                 downloadContent.style.display = 'flex';
                 document.getElementById('password-input').blur();
+                // limpa mensagem de erro caso exista
+                if (errorMessage) errorMessage.style.display = 'none';
             } else {
-                errorMessage.style.display = 'block';
+                if (errorMessage) errorMessage.style.display = 'block';
                 document.getElementById('password-input').value = '';
                 document.getElementById('password-input').focus();
             }
         }
 
+        // Retorna para a tela de senha
         function voltarParaSenha() {
             document.getElementById('download-content').style.display = 'none';
             document.getElementById('password-overlay').style.display = 'flex';
             document.getElementById('password-input').value = '';
             document.getElementById('password-input').focus();
-            document.getElementById('error-message').style.display = 'none';
+            const errorMsg = document.getElementById('error-message');
+            if (errorMsg) errorMsg.style.display = 'none';
         }
     </script>
 </body>
